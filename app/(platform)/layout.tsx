@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import { ClerkProvider } from "@clerk/nextjs";
 
 interface Props {
@@ -5,5 +6,10 @@ interface Props {
 }
 
 export default function PlatformLayout({ children }: Props) {
-  return <ClerkProvider>{children}</ClerkProvider>;
+  return (
+    <ClerkProvider>
+      <Toaster />
+      {children}
+    </ClerkProvider>
+  );
 }
