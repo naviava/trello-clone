@@ -1,6 +1,7 @@
 "use client";
 
-import { memo, useCallback } from "react";
+import { ElementRef, useCallback, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 import { toast } from "sonner";
 import { X } from "lucide-react";
@@ -18,6 +19,7 @@ import FormSubmit from "./form-submit";
 import FormInput from "./form-input";
 
 import { createBoard } from "~/actions/create-board";
+import FormPicker from "./form-picker";
 
 interface Props {
   children: React.ReactNode;
@@ -32,6 +34,9 @@ export default function FormPopover({
   side = "bottom",
   sideOffset = 0,
 }: Props) {
+  const router = useRouter();
+  const closeRef = useRef<ElementRef<"button">>(null);
+
   const { execute, fieldErrors } = useAction(createBoard, {
     onError: (error) => {
       console.log({ error });
@@ -40,13 +45,17 @@ export default function FormPopover({
     onSuccess: (data) => {
       console.log({ data });
       toast.success("Board created successfully!");
+      closeRef.current?.click();
+      router.push(`/board/${data.id}`);
     },
   });
 
   const onSubmit = useCallback(
     (formData: FormData) => {
       const title = formData.get("title") as string;
-      execute({ title });
+      const image = formData.get("image") as string;
+
+      execute({ title, image });
     },
     [execute],
   );
@@ -63,7 +72,7 @@ export default function FormPopover({
         <div className="text-center text-sm font-medium text-neutral-600">
           Create board
         </div>
-        <PopoverClose asChild>
+        <PopoverClose ref={closeRef} asChild>
           <Button
             variant="ghost"
             className="absolute right-2 top-2 h-auto w-auto p-2 text-neutral-600"
@@ -73,6 +82,7 @@ export default function FormPopover({
         </PopoverClose>
         <form action={onSubmit} className="space-y-4">
           <div className="space-y-4">
+            <FormPicker id="image" errors={fieldErrors} />
             <FormInput
               id="title"
               label="Board title"
