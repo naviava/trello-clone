@@ -1,7 +1,7 @@
 import { Skeleton } from "~/components/ui/skeleton";
 import { SkeletonNavItem } from "./nav-item";
 
-export default function LoadingSkeleton() {
+export function LoadingSkeleton() {
   return (
     <>
       <div className="mb-2 flex items-center justify-between">

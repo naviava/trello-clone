@@ -1,6 +1,6 @@
 "use client";
 
-import { ElementRef, useCallback, useRef } from "react";
+import { ElementRef, memo, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 import { toast } from "sonner";
@@ -15,11 +15,11 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 import { Button } from "~/components/ui/button";
-import FormSubmit from "./form-submit";
-import FormInput from "./form-input";
+import { FormSubmit } from "./form-submit";
+import { FormPicker } from "./form-picker";
+import { FormInput } from "./form-input";
 
 import { createBoard } from "~/actions/create-board";
-import FormPicker from "./form-picker";
 
 interface Props {
   children: React.ReactNode;
@@ -27,8 +27,8 @@ interface Props {
   align?: "start" | "center" | "end";
   sideOffset?: number;
 }
-
-export default function FormPopover({
+export const FormPopover = memo(_FormPopover);
+function _FormPopover({
   children,
   align,
   side = "bottom",

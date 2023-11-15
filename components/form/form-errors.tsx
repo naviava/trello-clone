@@ -5,7 +5,7 @@ interface Props {
   errors?: Record<string, string[] | undefined>;
 }
 
-export default function FormErrors({ id, errors }: Props) {
+export function FormErrors({ id, errors }: Props) {
   if (!errors) return null;
 
   return (

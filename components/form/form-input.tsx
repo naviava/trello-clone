@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 
 import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
-import FormErrors from "./form-errors";
+import { FormErrors } from "./form-errors";
 
 import { cn } from "~/lib/utils";
 
@@ -22,7 +22,7 @@ interface Props {
   onBlur?: () => void;
 }
 
-const FormInput = forwardRef<HTMLInputElement, Props>(
+const _FormInput = forwardRef<HTMLInputElement, Props>(
   (
     {
       id,
@@ -71,6 +71,5 @@ const FormInput = forwardRef<HTMLInputElement, Props>(
   },
 );
 
-FormInput.displayName = "FormInput";
-
-export default memo(FormInput);
+_FormInput.displayName = "FormInput";
+export const FormInput = memo(_FormInput);

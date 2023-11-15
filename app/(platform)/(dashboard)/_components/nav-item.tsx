@@ -25,8 +25,8 @@ interface Props {
   onExpand: (id: string) => void;
 }
 
-export default memo(NavItem);
-function NavItem({ isActive, isExpanded, onExpand, org }: Props) {
+export const NavItem = memo(_NavItem);
+function _NavItem({ isActive, isExpanded, onExpand, org }: Props) {
   const router = useRouter();
   const pathname = usePathname();
 

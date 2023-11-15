@@ -5,9 +5,7 @@ import { useOrganization } from "@clerk/nextjs";
 import { CreditCard } from "lucide-react";
 import { Skeleton } from "~/components/ui/skeleton";
 
-interface Props {}
-
-export default function Info({}: Props) {
+export function Info() {
   const { organization: org, isLoaded } = useOrganization();
 
   if (!isLoaded) {

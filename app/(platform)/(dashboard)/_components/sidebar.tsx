@@ -10,17 +10,16 @@ import { useOrganization, useOrganizationList } from "@clerk/nextjs";
 import { Organization } from "~/types";
 
 import { Button } from "~/components/ui/button";
-import { Separator } from "~/components/ui/separator";
 import { Accordion } from "~/components/ui/accordion";
-import LoadingSkeleton from "./loading-skeleton";
-import NavItem from "./nav-item";
+import { LoadingSkeleton } from "./loading-skeleton";
+import { NavItem } from "./nav-item";
 
 interface Props {
   storageKey?: string;
 }
 
-export default memo(Sidebar);
-function Sidebar({ storageKey = "t-sidebar-state" }: Props) {
+export const Sidebar = memo(_Sidebar);
+function _Sidebar({ storageKey = "t-sidebar-state" }: Props) {
   const [expanded, setExpanded] = useLocalStorage<Record<string, any>>(
     storageKey,
     {},

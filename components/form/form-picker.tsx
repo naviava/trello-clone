@@ -1,13 +1,13 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Check, Loader2 } from "lucide-react";
 
-import FormErrors from "./form-errors";
+import { FormErrors } from "./form-errors";
 
 import { cn } from "~/lib/utils";
 import { unsplash } from "~/lib/unsplash";
@@ -18,7 +18,8 @@ interface Props {
   errors?: Record<string, string[] | undefined>;
 }
 
-export default function FormPicker({ id, errors }: Props) {
+export const FormPicker = memo(_FormPicker);
+function _FormPicker({ id, errors }: Props) {
   const { pending } = useFormStatus();
 
   const [isLoading, setIsLoading] = useState(true);

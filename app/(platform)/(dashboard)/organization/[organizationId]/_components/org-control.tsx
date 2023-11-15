@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 
 import { useOrganizationList } from "@clerk/nextjs";
 
-export default function OrgControl() {
+export function OrgControl() {
   const params = useParams();
   const { setActive } = useOrganizationList();
 

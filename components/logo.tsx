@@ -4,7 +4,7 @@ import Image from "next/image";
 import { cn } from "~/lib/utils";
 import { headingFont } from "~/lib/fonts";
 
-export default function Logo() {
+export function Logo() {
   return (
     <Link href="/">
       <div className="hidden items-center gap-x-2 transition hover:opacity-75 md:flex">

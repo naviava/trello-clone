@@ -1,6 +1,8 @@
 "use client";
 
+import { memo } from "react";
 import { useFormStatus } from "react-dom";
+
 import { Button } from "~/components/ui/button";
 
 interface Props {
@@ -16,8 +18,8 @@ interface Props {
     | "outline"
     | "ghost";
 }
-
-export default function FormSubmit({
+export const FormSubmit = memo(_FormSubmit);
+function _FormSubmit({
   children,
   className,
   disabled,
