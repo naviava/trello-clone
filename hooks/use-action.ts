@@ -28,9 +28,9 @@ export function useAction<TInput, TOutput>(
 
       try {
         const result = await action(input);
-        setFieldErrors(result.fieldErrors);
-
         if (!result) return;
+
+        setFieldErrors(result.fieldErrors);
 
         if (!!result.error) {
           setError(result.error);
