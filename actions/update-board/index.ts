@@ -29,7 +29,7 @@ export async function handler(data: InputType): Promise<ReturnType> {
     return { error: "Failed to update board" };
   }
 
-  revalidatePath(`/organization/${orgId}`);
+  revalidatePath(`/board/${board.id}`);
   return { data: board };
 }
 

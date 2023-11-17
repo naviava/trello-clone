@@ -29,6 +29,7 @@ function _FormSubmit({
 
   return (
     <Button
+      type="submit"
       size="sm"
       variant={variant}
       disabled={pending || disabled}

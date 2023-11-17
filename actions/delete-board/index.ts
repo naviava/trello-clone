@@ -29,7 +29,7 @@ export async function handler(data: InputType): Promise<ReturnType> {
     return { error: "Failed to delete board" };
   }
 
-  revalidatePath(`/board/${id}`);
+  revalidatePath(`/organization/${orgId}`);
   redirect(`/organization/${orgId}`);
 }
 
