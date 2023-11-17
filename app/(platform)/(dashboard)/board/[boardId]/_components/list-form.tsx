@@ -29,14 +29,10 @@ export function ListForm({}: Props) {
 
   const enableEditing = useCallback(() => {
     setIsEditing(true);
-    setTimeout(() => {
-      inputRef.current?.focus();
-    });
+    setTimeout(() => inputRef.current?.focus());
   }, []);
 
-  const disableEditing = useCallback(() => {
-    setIsEditing(false);
-  }, []);
+  const disableEditing = useCallback(() => setIsEditing(false), []);
 
   const { execute, fieldErrors } = useAction(createList, {
     onError: (error) => toast.error(error),
@@ -59,7 +55,7 @@ export function ListForm({}: Props) {
   useEventListener("keydown", handleKeyDown);
   useOnClickOutside(formRef, disableEditing);
 
-  const onSubmit = useCallback(
+  const handleSubmit = useCallback(
     (formData: FormData) => {
       const title = formData.get("title") as string;
       const boardId = formData.get("boardId") as string;
@@ -74,7 +70,7 @@ export function ListForm({}: Props) {
       <ListWrapper>
         <form
           ref={formRef}
-          action={onSubmit}
+          action={handleSubmit}
           className="w-full space-y-4 rounded-md bg-white p-3 shadow-md"
         >
           <FormInput

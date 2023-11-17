@@ -50,7 +50,7 @@ function _FormPopover({
     },
   });
 
-  const onSubmit = useCallback(
+  const handleSubmit = useCallback(
     (formData: FormData) => {
       const title = formData.get("title") as string;
       const image = formData.get("image") as string;
@@ -80,7 +80,7 @@ function _FormPopover({
             <X className="h-4 w-4" />
           </Button>
         </PopoverClose>
-        <form action={onSubmit} className="space-y-4">
+        <form action={handleSubmit} className="space-y-4">
           <div className="space-y-4">
             <FormPicker id="image" errors={fieldErrors} />
             <FormInput

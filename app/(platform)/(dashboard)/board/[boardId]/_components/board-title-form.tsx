@@ -55,7 +55,7 @@ function _BoardTitleForm({ data }: Props) {
     formRef.current?.requestSubmit();
   }, []);
 
-  const onSubmit = useCallback(
+  const handleSubmit = useCallback(
     (formData: FormData) => {
       const title = formData.get("title") as string;
       execute({ id: data.id, title });
@@ -81,7 +81,7 @@ function _BoardTitleForm({ data }: Props) {
     return (
       <form
         ref={formRef}
-        action={onSubmit}
+        action={handleSubmit}
         className="flex items-center gap-x-2"
       >
         <FormInput
