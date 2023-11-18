@@ -15,7 +15,10 @@ import { Sidebar } from "./sidebar";
 export function MobileSidebar() {
   const pathname = usePathname();
   const isMounted = useIsMounted();
-  const { isOpen, onOpen, onClose } = useMobileSideBar();
+
+  const isOpen = useMobileSideBar((state) => state.isOpen);
+  const onOpen = useMobileSideBar((state) => state.onOpen);
+  const onClose = useMobileSideBar((state) => state.onClose);
 
   useEffect(() => onClose(), [pathname, onClose]);
 
