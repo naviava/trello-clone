@@ -1,5 +1,7 @@
 "use client";
 
+import { memo, useCallback } from "react";
+
 import { toast } from "sonner";
 import { MoreHorizontal, X } from "lucide-react";
 
@@ -14,13 +16,13 @@ import {
 import { Button } from "~/components/ui/button";
 
 import { deleteBoard } from "~/actions/delete-board";
-import { useCallback } from "react";
 
 interface Props {
   id: string;
 }
 
-export function BoardOptions({ id }: Props) {
+export const BoardOptions = memo(_BoardOptions);
+function _BoardOptions({ id }: Props) {
   const { execute, isLoading } = useAction(deleteBoard, {
     onError: (error) => toast.error(error),
     onSuccess: () => toast.success("Board deleted"),

@@ -1,6 +1,6 @@
 "use client";
 
-import { ElementRef, useCallback, useRef, useState } from "react";
+import { ElementRef, memo, useCallback, useRef, useState } from "react";
 
 import { toast } from "sonner";
 
@@ -16,9 +16,11 @@ import { updateList } from "~/actions/update-list";
 
 interface Props {
   data: List;
+  onAddCard: () => void;
 }
 
-export function ListHeader({ data }: Props) {
+export const ListHeader = memo(_ListHeader);
+function _ListHeader({ data, onAddCard }: Props) {
   const formRef = useRef<ElementRef<"form">>(null);
   const inputRef = useRef<ElementRef<"input">>(null);
 
@@ -94,7 +96,7 @@ export function ListHeader({ data }: Props) {
           {title}
         </div>
       )}
-      <ListOptions data={data} onAddCard={() => {}} />
+      <ListOptions data={data} onAddCard={onAddCard} />
     </div>
   );
 }

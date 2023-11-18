@@ -1,6 +1,6 @@
 "use client";
 
-import { ElementRef, useCallback, useRef } from "react";
+import { ElementRef, memo, useCallback, useRef } from "react";
 
 import { toast } from "sonner";
 import { MoreHorizontal, X } from "lucide-react";
@@ -27,7 +27,8 @@ interface Props {
   onAddCard: () => void;
 }
 
-export function ListOptions({ data, onAddCard }: Props) {
+export const ListOptions = memo(_ListOptions);
+function _ListOptions({ data, onAddCard }: Props) {
   const closeRef = useRef<ElementRef<"button">>(null);
 
   const { execute: executeDelete } = useAction(deleteList, {

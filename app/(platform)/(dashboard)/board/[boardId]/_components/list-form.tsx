@@ -16,9 +16,7 @@ import { ListWrapper } from "./list-wrapper";
 
 import { createList } from "~/actions/create-list";
 
-interface Props {}
-
-export function ListForm({}: Props) {
+export function ListForm() {
   const router = useRouter();
   const params = useParams<{ boardId: string }>();
 

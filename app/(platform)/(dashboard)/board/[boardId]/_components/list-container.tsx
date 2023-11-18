@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 import { ListWithCards } from "~/types";
 
@@ -12,7 +12,8 @@ interface Props {
   data: ListWithCards[];
 }
 
-export function ListContainer({ boardId, data }: Props) {
+export const ListContainer = memo(_ListContainer);
+function _ListContainer({ boardId, data }: Props) {
   const [orderedData, setOrderedData] = useState(data);
 
   useEffect(() => setOrderedData(data), [data]);
