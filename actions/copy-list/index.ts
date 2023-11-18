@@ -60,7 +60,7 @@ export async function handler(data: InputType): Promise<ReturnType> {
       include: { cards: true },
     });
   } catch (error) {
-    return { error: "Failed to copy list" };
+    return { error: "Failed to copy card" };
   }
 
   revalidatePath(`/board/${boardId}`);

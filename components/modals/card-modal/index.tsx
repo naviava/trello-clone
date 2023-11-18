@@ -7,10 +7,11 @@ import { CardWithList } from "~/types";
 import { useCardModal } from "~/hooks/use-card-modal";
 
 import { Dialog, DialogContent } from "~/components/ui/dialog";
+import { Description, DescriptionSkeleton } from "./description";
 import { Header, HeaderSkeleton } from "./header";
+import { Actions, ActionsSkeleton } from "./actions";
 
 import { fetcher } from "~/lib/fetcher";
-import { Description, DescriptionSkeleton } from "./description";
 
 export function CardModal() {
   const id = useCardModal((state) => state.id);
@@ -36,6 +37,7 @@ export function CardModal() {
               )}
             </div>
           </div>
+          {!cardData ? <ActionsSkeleton /> : <Actions data={cardData} />}
         </div>
       </DialogContent>
     </Dialog>
