@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { X } from "lucide-react";
 
 import { useAction } from "~/hooks/use-action";
+import { useProModal } from "~/hooks/use-pro-modal";
 
 import {
   Popover,
@@ -35,12 +36,13 @@ function _FormPopover({
   sideOffset = 0,
 }: Props) {
   const router = useRouter();
+  const proModal = useProModal();
   const closeRef = useRef<ElementRef<"button">>(null);
 
   const { execute, fieldErrors } = useAction(createBoard, {
     onError: (error) => {
-      console.log({ error });
       toast.error(error);
+      proModal.onOpen();
     },
     onSuccess: (data) => {
       console.log({ data });

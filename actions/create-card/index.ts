@@ -6,8 +6,10 @@ import { auth } from "@clerk/nextjs";
 
 import { CreateCardSchema } from "./schema";
 import { InputType, ReturnType } from "./types";
+import { ACTION, ENTITY_TYPE } from "@prisma/client";
 
 import { db } from "~/lib/db";
+import { createAuditLog } from "~/lib/create-audit-log";
 import { createSafeAction } from "~/lib/create-safe-action";
 
 export async function handler(data: InputType): Promise<ReturnType> {
@@ -46,6 +48,13 @@ export async function handler(data: InputType): Promise<ReturnType> {
         listId,
         order: newOrder,
       },
+    });
+
+    await createAuditLog({
+      entityId: card.id,
+      entityType: ENTITY_TYPE.CARD,
+      entityTitle: card.title,
+      action: ACTION.CREATE,
     });
   } catch (error) {
     return { error: "Failed to create card" };

@@ -12,7 +12,7 @@ export function Logo() {
         <p
           className={cn("pt-1 text-lg text-neutral-700", headingFont.className)}
         >
-          Taskify
+          EZFlow
         </p>
       </div>
     </Link>

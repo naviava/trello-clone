@@ -6,8 +6,10 @@ import { auth } from "@clerk/nextjs";
 
 import { DeleteCardSchema } from "./schema";
 import { InputType, ReturnType } from "./types";
+import { ACTION, ENTITY_TYPE } from "@prisma/client";
 
 import { db } from "~/lib/db";
+import { createAuditLog } from "~/lib/create-audit-log";
 import { createSafeAction } from "~/lib/create-safe-action";
 
 export async function handler(data: InputType): Promise<ReturnType> {
@@ -28,6 +30,13 @@ export async function handler(data: InputType): Promise<ReturnType> {
           board: { orgId },
         },
       },
+    });
+
+    await createAuditLog({
+      entityId: card.id,
+      entityTitle: card.title,
+      entityType: ENTITY_TYPE.CARD,
+      action: ACTION.DELETE,
     });
   } catch (error) {
     return { error: "Failed to delete card" };

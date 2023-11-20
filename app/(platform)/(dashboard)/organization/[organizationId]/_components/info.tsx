@@ -1,15 +1,23 @@
 "use client";
 
+import { memo } from "react";
 import Image from "next/image";
-import { useOrganization } from "@clerk/nextjs";
+
 import { CreditCard } from "lucide-react";
+import { useOrganization } from "@clerk/nextjs";
+
 import { Skeleton } from "~/components/ui/skeleton";
 
-export function Info() {
+interface Props {
+  isPro: boolean;
+}
+
+export const Info = memo(_Info);
+function _Info({ isPro }: Props) {
   const { organization: org, isLoaded } = useOrganization();
 
   if (!isLoaded) {
-    return <Info.Skeleton />;
+    return <_Info.Skeleton />;
   }
 
   return (
@@ -26,14 +34,14 @@ export function Info() {
         <p className="text-xl font-semibold">{org?.name}</p>
         <div className="flex items-center text-xs text-muted-foreground">
           <CreditCard className="mr-1 h-3 w-3" />
-          Free
+          {isPro ? "Pro" : "Free"}
         </div>
       </div>
     </div>
   );
 }
 
-Info.Skeleton = function InfoSkeleton() {
+_Info.Skeleton = function InfoSkeleton() {
   return (
     <div className="flex items-center gap-x-4">
       <div className="relative h-[60px] w-[60px]">

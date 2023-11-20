@@ -9,13 +9,13 @@ import { Copy, Trash } from "lucide-react";
 import { CardWithList } from "~/types";
 
 import { useAction } from "~/hooks/use-action";
+import { useCardModal } from "~/hooks/use-card-modal";
 
 import { Button } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";
 
 import { copyCard } from "~/actions/copy-card";
 import { deleteCard } from "~/actions/delete-card";
-import { useCardModal } from "~/hooks/use-card-modal";
 
 interface Props {
   data: CardWithList;

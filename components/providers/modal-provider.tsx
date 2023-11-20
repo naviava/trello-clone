@@ -1,6 +1,8 @@
 "use client";
 
 import { useIsMounted } from "~/hooks/use-is-mounted";
+
+import { ProModal } from "~/components/modals/pro-modal";
 import { CardModal } from "~/components/modals/card-modal";
 
 export function ModalProvider() {
@@ -10,6 +12,7 @@ export function ModalProvider() {
   return (
     <>
       <CardModal />
+      <ProModal />
     </>
   );
 }

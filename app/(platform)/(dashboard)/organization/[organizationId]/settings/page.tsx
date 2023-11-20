@@ -1,8 +1,6 @@
 import { OrganizationProfile } from "@clerk/nextjs";
 
-interface Props {}
-
-export default function SettingsPage({}: Props) {
+export default function SettingsPage() {
   return (
     <div className="w-full">
       <OrganizationProfile

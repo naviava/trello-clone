@@ -1,4 +1,4 @@
 export const siteConfig = {
-  name: "Taskify",
+  name: "EZFlow",
   description: "Collaborative task management",
 };

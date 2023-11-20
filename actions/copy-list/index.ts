@@ -6,8 +6,10 @@ import { auth } from "@clerk/nextjs";
 
 import { CopyListSchema } from "./schema";
 import { InputType, ReturnType } from "./types";
+import { ACTION, ENTITY_TYPE } from "@prisma/client";
 
 import { db } from "~/lib/db";
+import { createAuditLog } from "~/lib/create-audit-log";
 import { createSafeAction } from "~/lib/create-safe-action";
 
 export async function handler(data: InputType): Promise<ReturnType> {
@@ -58,6 +60,13 @@ export async function handler(data: InputType): Promise<ReturnType> {
         },
       },
       include: { cards: true },
+    });
+
+    await createAuditLog({
+      entityId: list.id,
+      entityTitle: list.title,
+      entityType: ENTITY_TYPE.LIST,
+      action: ACTION.CREATE,
     });
   } catch (error) {
     return { error: "Failed to copy card" };
